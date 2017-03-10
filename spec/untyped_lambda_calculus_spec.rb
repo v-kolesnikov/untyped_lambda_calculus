@@ -55,6 +55,7 @@ module UntypedLambdaCalculus
     describe 'SUB' do
       it { expect(to_integer[SUB[ONE][ONE]]).to eq 0 }
       it { expect(to_integer[SUB[TWO][ONE]]).to eq 1 }
+      it { expect(to_integer[SUB[ONE][TWO]]).to eq 0 }
       it { expect(to_integer[SUB[TWO][TWO]]).to eq 0 }
       it { expect(to_integer[SUB[ONE][ZERO]]).to eq 1 }
       it { expect(to_integer[SUB[TWO][ZERO]]).to eq 2 }
@@ -73,6 +74,25 @@ module UntypedLambdaCalculus
       it { expect(to_integer[POW[ONE][ONE]]).to eq 1 }
       it { expect(to_integer[POW[TWO][ONE]]).to eq 2 }
       it { expect(to_integer[POW[TWO][TWO]]).to eq 4 }
+    end
+
+    describe 'IS_ZERO' do
+      it { expect(to_boolean[IS_ZERO[ZERO]]).to eq true }
+      it { expect(to_boolean[IS_ZERO[ONE]]).to eq false }
+      it { expect(to_boolean[IS_ZERO[TWO]]).to eq false }
+    end
+
+    describe 'LESS_OR_EQ' do
+      it { expect(to_boolean[LESS_OR_EQ[ONE][ONE]]).to eq true }
+      it { expect(to_boolean[LESS_OR_EQ[ONE][TWO]]).to eq true }
+      it { expect(to_boolean[LESS_OR_EQ[ZERO][ONE]]).to eq true }
+      it { expect(to_boolean[LESS_OR_EQ[TWO][ONE]]).to eq false }
+    end
+
+    describe 'MOD' do
+      it { expect(to_integer[MOD[ONE][TWO]]).to eq 1 }
+      it { expect(to_integer[MOD[INC[INC[INC[TWO]]]][TWO]]).to eq 1 }
+      it { expect(to_integer[MOD[INC[INC[INC[TWO]]]][INC[TWO]]]).to eq 2 }
     end
   end
 end

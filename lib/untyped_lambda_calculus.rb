@@ -23,4 +23,19 @@ module UntypedLambdaCalculus
   SUB = ->(n) { ->(m) { m[DEC][n] } }
   MUL = ->(n) { ->(m) { m[ADD[n]][ZERO] } }
   POW = ->(n) { ->(m) { m[MUL[n]][ONE]  } }
+
+  IS_ZERO = ->(n) { n[->(_) { FALSE }][TRUE] }
+
+  LESS_OR_EQ = ->(n) { ->(m) { IS_ZERO[SUB[n][m]] } }
+
+  Y = ->(f) { ->(x) { f[x[x]] }[->(x) { f[x[x]] }] }
+  Z = ->(f) { ->(x) { f[->(y) { x[x][y] }] }[->(x) { f[->(y) { x[x][y] }] }] }
+
+  MOD = Z[
+    ->(f) {
+      ->(n) {
+        ->(m) { IF[LESS_OR_EQ[m][n]][->(x) { f[SUB[n][m]][m][x] }][n] }
+      }
+    }
+  ]
 end
