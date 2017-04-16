@@ -10,6 +10,11 @@ module UntypedLambdaCalculus
 
   IF = ->(p) { ->(x) { ->(y) { p[x][y] } } }
 
+  AND = ->(x) { ->(y) { x[y][FALSE] } }
+  OR  = ->(x) { ->(y) { x[TRUE][y] } }
+
+  NOT = ->(x) { x[FALSE][TRUE] }
+
   PAIR  = ->(x) { ->(y) { ->(p) { p[x][y] } } }
   LEFT  = ->(p) { p[->(x) { ->(*) { x } }] }
   RIGHT = ->(p) { p[->(*) { ->(y) { y } }] }

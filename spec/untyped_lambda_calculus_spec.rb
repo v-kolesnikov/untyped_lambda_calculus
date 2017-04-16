@@ -28,6 +28,25 @@ module UntypedLambdaCalculus
       it { expect(to_boolean[IF[FALSE][FALSE][FALSE]]).to eq false }
     end
 
+    describe 'and' do
+      it { expect(to_boolean[AND[TRUE][TRUE]]).to eq true }
+      it { expect(to_boolean[AND[TRUE][FALSE]]).to eq false }
+      it { expect(to_boolean[AND[FALSE][TRUE]]).to eq false }
+      it { expect(to_boolean[AND[FALSE][FALSE]]).to eq false }
+    end
+
+    describe 'or' do
+      it { expect(to_boolean[OR[TRUE][TRUE]]).to eq true }
+      it { expect(to_boolean[OR[TRUE][FALSE]]).to eq true }
+      it { expect(to_boolean[OR[FALSE][TRUE]]).to eq true }
+      it { expect(to_boolean[OR[FALSE][FALSE]]).to eq false }
+    end
+
+    describe 'not' do
+      it { expect(to_boolean[NOT[TRUE]]).to eq false }
+      it { expect(to_boolean[NOT[FALSE]]).to eq true }
+    end
+
     describe 'increment' do
       it { expect(to_integer[INC[ONE]]).to eq 2 }
       it { expect(to_integer[INC[TWO]]).to eq 3 }
