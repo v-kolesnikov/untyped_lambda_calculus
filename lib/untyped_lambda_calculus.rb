@@ -1,5 +1,3 @@
-require "untyped_lambda_calculus/version"
-
 module UntypedLambdaCalculus
   ZERO = ->(*) { ->(x) { x } }
   ONE  = ->(p) { ->(x) { p[x] } }
