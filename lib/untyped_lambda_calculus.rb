@@ -10,8 +10,8 @@ module UntypedLambdaCalculus
 
   IF = ->(p) { ->(x) { ->(y) { p[x][y] } } }
 
-  AND = ->(x) { ->(y) { x[y][FALSE] } }
-  OR  = ->(x) { ->(y) { x[TRUE][y] } }
+  AND = ->(x) { ->(y) { x[y][x] } }
+  OR  = ->(x) { ->(y) { x[x][y] } }
 
   NOT = ->(x) { x[FALSE][TRUE] }
 
